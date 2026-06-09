@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: smmap
-  version: "6.0.0"
+  version: "5.0.3"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/smmap-${{ version }}.tar.gz
-  sha256: 8d79028ea6cc131da5eab099a5d95a998d43c6779956fffe3b455040911076da
+  sha256: 4d9debb8b99007ae47165abc08670bd74cb74b5227dda7f643eccc4e9eb5642c
 
 build:
-  number: 4
+  number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -30,7 +30,9 @@ tests:
       imports:
         - smmap
       pip_check: true
-      python_version: ${{ python_min }}
+      python_version: 
+        - ${{ python_min }}
+        - "*"
 
 about:
   summary: A pure git implementation of a sliding window memory map manager.
